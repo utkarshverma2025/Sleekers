@@ -10,7 +10,7 @@ import json
 try:
     # --- PASTE YOUR API KEYS HERE ---
     GEMINI_API_KEY = "AIzaSyAUB5leYMYn87eJalphWoaV0JujHRjmzuw"
-    OPENAI_API_KEY = "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"
+    OPENAI_API_KEY = "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"
     
     genai.configure(api_key=GEMINI_API_KEY)
     openai.api_key = OPENAI_API_KEY
@@ -106,3 +106,4 @@ if __name__ == "__main__":
             
             # The final, formatted string is printed to the console for Streamlit to capture.
             print(output_string)
+
