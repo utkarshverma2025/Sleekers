@@ -122,6 +122,21 @@ def run_script(script_path, *args):
 # HOME PAGE
 # -------------------------------
 if st.session_state.view == "home":
+    st.markdown(
+        """
+        <div style="text-align: center; margin-bottom: 50px;">
+            <h1 style="font-size: 3.2em; margin-bottom: 0;">✨ SleekAI ✨</h1>
+            <p style="font-size: 1.4em; font-style: italic; color: #888; margin-top: 8px;">
+                Just Sleek It
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    # Add vertical spacing before buttons
+    st.markdown("<br><br>", unsafe_allow_html=True)
+
     col1, col2 = st.columns(2)
     with col1:
         if st.button("👨‍🏫 Teacher", use_container_width=True):
@@ -162,7 +177,6 @@ elif st.session_state.view == "teacher":
       elif st.session_state.active_teacher_button == "Details":
           st.subheader("📊 Upload & Analyze Student Data")             
     
-
           uploaded_file = st.file_uploader(
             "Upload student data file (Excel, PDF, DOCX, or Image)",
             type=["xlsx", "pdf", "docx", "png", "jpg", "jpeg"],
