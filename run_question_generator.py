@@ -23,7 +23,7 @@ except Exception as e:
 # Paste your OpenAI API Key for the Question Generator
 try:
     # This key is an example and will not work. Replace it with your own.
-    OPENAI_API_KEY = "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" # 🔑 Replace with your actual key
+    OPENAI_API_KEY = "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" # 🔑 Replace with your actual key
     if OPENAI_API_KEY == "hb":
          print("ERROR: Please provide your actual OpenAI API Key.")
          exit()
@@ -74,7 +74,7 @@ def generate_questions_with_openai(ocr_text: str) -> str:
 
         {ocr_text}
 
-        Please generate 5 good, human-readable questions based on these notes.  
+        Please generate 10 good, human-readable questions based on these notes.  
         ⚠️ Important: Use **normal human math notation** like √, π, ∫, fractions, exponents (a², x³), etc.  
         Do NOT use LaTeX (e.g., \int, ^{{2}}), programming-style (** or //), or MathML.  
         Only output plain text that looks like how math appears in a textbook."""
