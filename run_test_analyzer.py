@@ -19,7 +19,7 @@ except Exception as e:
 
 # --- 2. AI Model Initialization ---
 # Using the Pro model for the highest quality analysis of complex documents.
-model = genai.GenerativeModel('gemini-1.5-pro-latest')
+model = genai.GenerativeModel('gemini-1.5-flash-latest')
 
 # --- 3. Function Definitions ---
 
