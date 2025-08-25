@@ -10,7 +10,7 @@ import json
 try:
     # --- PASTE YOUR API KEYS HERE ---
     GEMINI_API_KEY = "AIzaSyAUB5leYMYn87eJalphWoaV0JujHRjmzuw"
-    OPENAI_API_KEY = "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"
+    OPENAI_API_KEY = "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"
     
     genai.configure(api_key=GEMINI_API_KEY)
     openai.api_key = OPENAI_API_KEY
