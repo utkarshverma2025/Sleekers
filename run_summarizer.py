@@ -10,7 +10,7 @@ import json
 try:
     # --- PASTE YOUR API KEYS HERE ---
     GEMINI_API_KEY = "AIzaSyAUB5leYMYn87eJalphWoaV0JujHRjmzuw"
-    OPENAI_API_KEY = "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"
+    OPENAI_API_KEY = "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"
     
     genai.configure(api_key=GEMINI_API_KEY)
     openai.api_key = OPENAI_API_KEY
@@ -51,12 +51,8 @@ def summarize_text_with_openai(ocr_text: str) -> dict:
     prompt = f"""
     Summarize the following text in a single, valid JSON object format:
     {{
-      "summary": "a short summary in 2-3 sentences",
-      "key_points": ["point 1", "point 2", "point 3"],
-      "flashcards": [
-        {{"question": "Q1", "answer": "A1"}},
-        {{"question": "Q2", "answer": "A2"}}
-      ]
+      "summary": "a detailed but concise summary in atleast 50% of the word count of the given text",
+      "key_points": ["point 1", "point 2", "point 3","point 4","point 5","point 6","point 7","point 8","point 9","point 10"],
     }}
     Text: {ocr_text}
     """
