@@ -5,5 +5,11 @@ openai
 streamlit
 requests
 fastapi
+fitz
+docx
+fastapi.responses
+PyMuPDF
+pandas
 python-docx
-pymupdf
+openpyxl
+tabulate
