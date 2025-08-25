@@ -4,7 +4,7 @@ import os
 import sys
 import io
 import pandas as pd
-import fitz  # PyMuPDF
+import pymupdf as fitz # PyMuPDF
 import docx
 from PIL import Image
 import google.generativeai as genai
@@ -13,7 +13,7 @@ import google.generativeai as genai
 # 1. CONFIGURATION: API KEY
 # -------------------------------
 try:
-    GEMINI_API_KEY = "PASTE_YOUR_GOOGLE_GEMINI_API_KEY_HERE"  # <-- PUT YOUR KEY HERE
+    GEMINI_API_KEY = "AIzaSyAUB5leYMYn87eJalphWoaV0JujHRjmzuw"  # <-- PUT YOUR KEY HERE
     if GEMINI_API_KEY == "PASTE_YOUR_GOOGLE_GEMINI_API_KEY_HERE":
         st.error("⚠️ Please provide your Google Gemini API Key inside app.py")
     genai.configure(api_key=GEMINI_API_KEY)
@@ -138,47 +138,61 @@ if st.session_state.view == "home":
 elif st.session_state.view == "teacher":
     with st.sidebar:
         if st.button("⬅️ Back to Home", use_container_width=True):
+            if 'active_teacher_button' in st.session_state:
+                del st.session_state.active_teacher_button
             st.session_state.view = "home"
             st.rerun()
 
     st.title("👨‍🏫 Teacher Dashboard")
 
     if st.button("Student Performances", use_container_width=True):
-        st.info("📂 Assignment upload functionality coming soon...")
+        st.session_state.active_teacher_button = "Performances"
 
     # 🔹 STUDENT DETAILS WITH DATA ANALYZER
     if st.button("Student Details", use_container_width=True):
-        st.subheader("📊 Upload & Analyze Student Data")
-
-        uploaded_file = st.file_uploader(
-            "Upload student data file (Excel, PDF, DOCX, or Image)",
-            type=["xlsx", "pdf", "docx", "png", "jpg", "jpeg"]
-        )
-
-        if uploaded_file is not None:
-            temp_dir = "temp_uploads"
-            os.makedirs(temp_dir, exist_ok=True)
-            temp_path = os.path.join(temp_dir, uploaded_file.name)
-
-            with open(temp_path, "wb") as f:
-                f.write(uploaded_file.getbuffer())
-
-            st.success("✅ File uploaded successfully!")
-            st.write("📄 Extracted Data:")
-            student_data = process_student_data_file(temp_path)
-            st.text_area("Extracted Data", value=student_data, height=300)
-
-            teacher_query = st.text_input("🔎 Ask a question about this data:")
-            if st.button("Get Answer"):
-                if student_data and not student_data.startswith("Error"):
-                    answer = query_student_data(student_data, teacher_query)
-                    st.subheader("AI Answer")
-                    st.write(answer)
-                else:
-                    st.error("⚠️ No valid data available for querying.")
-
+        st.session_state.active_teacher_button = "Details"
+    
     if st.button("Class Schedules", use_container_width=True):
-        st.info("📝 Test paper creation functionality coming soon...")
+        st.session_state.active_teacher_button = "Schedules"
+    
+    if 'active_teacher_button' in st.session_state:
+      if st.session_state.active_teacher_button == "Performances":
+          st.info(" Student Performances functionality coming soon...")
+
+      elif st.session_state.active_teacher_button == "Details":
+          st.subheader("📊 Upload & Analyze Student Data")             
+    
+
+          uploaded_file = st.file_uploader(
+            "Upload student data file (Excel, PDF, DOCX, or Image)",
+            type=["xlsx", "pdf", "docx", "png", "jpg", "jpeg"],
+            key = "teacher_upload"
+          )
+
+          if uploaded_file is not None:
+              temp_dir = "temp_uploads"
+              os.makedirs(temp_dir, exist_ok=True)
+              temp_path = os.path.join(temp_dir, uploaded_file.name)
+
+              with open(temp_path, "wb") as f:
+                  f.write(uploaded_file.getbuffer())
+
+              st.success("✅ File uploaded successfully!")
+              st.write("📄 Extracted Data:")
+              student_data = process_student_data_file(temp_path)
+              st.text_area("Extracted Data", value=student_data, height=300)
+
+              teacher_query = st.text_input("🔎 Ask a question about this data:")
+              if st.button("Get Answer"):
+                  if student_data and not student_data.startswith("Error"):
+                      answer = query_student_data(student_data, teacher_query)
+                      st.subheader("AI Answer")
+                      st.write(answer)
+                  else:
+                      st.error("⚠️ No valid data available for querying.")
+
+      elif st.session_state.active_teacher_button == "Schedules":
+         st.info(" Time Tables functionlity coming soon...")
 
 # -------------------------------
 # STUDENT DASHBOARD
