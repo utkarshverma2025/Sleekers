@@ -23,7 +23,7 @@ except Exception as e:
 # Paste your OpenAI API Key for the Question Generator
 try:
     # This key is an example and will not work. Replace it with your own.
-    OPENAI_API_KEY = "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" # 🔑 Replace with your actual key
+    OPENAI_API_KEY = "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" # 🔑 Replace with your actual key
     if OPENAI_API_KEY == "hb":
          print("ERROR: Please provide your actual OpenAI API Key.")
          exit()
@@ -117,4 +117,3 @@ if __name__ == "__main__":
 
         # The final output that Streamlit will capture and display.
         print(generated_questions)
-
