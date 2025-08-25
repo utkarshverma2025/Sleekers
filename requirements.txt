@@ -1,0 +1,9 @@
+google-generativeai
+Pillow
+python-dotenv
+openai
+streamlit
+requests
+fastapi
+python-docx
+pymupdf
